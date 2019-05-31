@@ -4,10 +4,11 @@ import ReactDOM from 'react-dom';
 
 // create react component
 const TodoList = () => {
+  const items = ['Learn React', 'Build Awesome App'];
   return (
     <ul>
-      <li>Learn React</li>
-      <li>Build Awesome App</li>
+      <li>{ items[0] }</li>
+      <li>{ items[1] }</li>
     </ul>
   );
 };
@@ -28,8 +29,12 @@ const SearchPanel = () => {
 
 // create another component
 const App = () => {
+  const isLoggedIn = true;
+  const loginBox = <span>Log in please</span>;
+  const welcomeBox = <span>Welcome back</span>;
   return (
     <div>
+      {isLoggedIn ? welcomeBox : loginBox}
       <AppHeader/>
       <SearchPanel/>
       <TodoList/>
