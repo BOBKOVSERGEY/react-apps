@@ -9,10 +9,14 @@ import ErrorIndicator from "../error-indicator";
 
 export default class RandomPlanet extends Component {
 
-  constructor() {
-    super();
+
+  componentDidMount() {
     this.updatePlanet();
     this.interval = setInterval(this.updatePlanet, 2500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   // проинициализируем в теле класса
@@ -40,7 +44,6 @@ export default class RandomPlanet extends Component {
 
   // попробуем обновить нашу планету и получить данные с сервера
   updatePlanet = () =>  {
-    console.log('update', +1);
     // math.random получить значение от 0 до 1
     // math.floor округлим до ближайшего целого
     const id = Math.floor(Math.random() * 17) + 2;
