@@ -9,6 +9,13 @@ import ErrorIndicator from "../error-indicator";
 
 export default class RandomPlanet extends Component {
 
+  // проинициализируем в теле класса
+  swapiService = new SwapiService();
+
+  state = {
+    planet: {},
+    loading: true
+  };
 
   componentDidMount() {
     this.updatePlanet();
@@ -18,14 +25,6 @@ export default class RandomPlanet extends Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-
-  // проинициализируем в теле класса
-  swapiService = new SwapiService();
-
-  state = {
-    planet: {},
-    loading: true
-  };
 
   onPlanetLoaded = (planet) => {
     this.setState({

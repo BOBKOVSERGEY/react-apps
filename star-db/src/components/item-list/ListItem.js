@@ -6,6 +6,7 @@ import Spinner from "../spinner";
 
 
 
+
 export default class ItemList extends Component {
 
   swapiService = new SwapiService();
@@ -15,17 +16,16 @@ export default class ItemList extends Component {
   };
 
   componentDidMount() {
-    this.swapiService
-      .getAllPeople()
+    this.swapiService.getAllPeople()
       .then((peopleList) => {
         this.setState({
           peopleList
-        })
-      })
+        });
+      });
   }
 
   renderItems(arr) {
-    return arr.map(({id, name})=> {
+    return arr.map(({id, name}) => {
       return (
         <li className="list-group-item"
             key={id}
@@ -38,10 +38,10 @@ export default class ItemList extends Component {
 
   render() {
 
-    const { peopleList  } = this.state;
+    const { peopleList } = this.state;
 
     if (!peopleList) {
-      return <Spinner/>;
+      return <Spinner />;
     }
 
     const items = this.renderItems(peopleList);
@@ -52,5 +52,4 @@ export default class ItemList extends Component {
       </ul>
     );
   }
-
 }
