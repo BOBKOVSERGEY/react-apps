@@ -8,6 +8,8 @@ import './App.css';
 import ErrorIndicator from "../error-indicator";
 import PeoplePage from "../people-page";
 import SwapiService from "../../services/SwapiService";
+import Row from "../row";
+import ItemDetails from "../item-details";
 
 export default class App extends Component {
 
@@ -37,11 +39,35 @@ export default class App extends Component {
       return <ErrorIndicator />
     }
 
+    const {
+            getPerson,
+            getStarship,
+      getPersonImage,
+      getStarshipImage
+          } = this.swapiService;
+
+    const personDetails = (
+      <ItemDetails
+        itemId={11}
+        getData={getPerson}
+        getImageUrl={getPersonImage}
+      />
+    );
+
+    const starshipDetails = (
+      <ItemDetails
+        itemId={5}
+        getData={getStarship}
+        getImageUrl={getStarshipImage}
+      />
+    );
+
     return (
       <div className="stardb-app">
         <Header />
         <RandomPlanet/>
-        <PeoplePage/>
+
+        <Row left={personDetails} right={starshipDetails}/>
       </div>
     );
   }
