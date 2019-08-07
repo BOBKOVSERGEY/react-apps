@@ -6,24 +6,26 @@ import RandomPlanet from '../random-planet';
 
 import './App.css';
 import ErrorIndicator from "../error-indicator";
-import PeoplePage from "../people-page";
-import SwapiService from "../../services/SwapiService";
 import Row from "../row";
-import ItemDetails from "../item-details";
+
+import {
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails,
+  PersonList,
+  PlanetList,
+  StarshipList
+} from "../sw-components"
 
 export default class App extends Component {
 
-  swapiService = new SwapiService();
+
 
   state = {
     hasError: false
   };
 
-  /*onPersonSelected = (id) => {
-    this.setState({
-      selectedPerson: id
-    })
-  };*/
+
 
   componentDidCatch(error, errorInfo) {
     console.log('componentDidCatch');
@@ -39,35 +41,20 @@ export default class App extends Component {
       return <ErrorIndicator />
     }
 
-    const {
-            getPerson,
-            getStarship,
-      getPersonImage,
-      getStarshipImage
-          } = this.swapiService;
 
-    const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage}
-      />
-    );
-
-    const starshipDetails = (
-      <ItemDetails
-        itemId={5}
-        getData={getStarship}
-        getImageUrl={getStarshipImage}
-      />
-    );
 
     return (
       <div className="stardb-app">
         <Header />
         <RandomPlanet/>
 
-        <Row left={personDetails} right={starshipDetails}/>
+        <PersonDetails itemId={11}/>
+        <PlanetDetails itemId={4}/>
+        <StarshipDetails itemId={9}/>
+
+        <PersonList/>
+        <StarshipList/>
+        <PlanetList/>
       </div>
     );
   }
